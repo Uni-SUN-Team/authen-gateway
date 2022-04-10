@@ -16,19 +16,19 @@ func Validate(c *gin.Context) {
 	body := &model.Validate{}
 	jsonData, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
-		log.Fatal("Read token is fail.")
+		log.Fatal(err.Error())
 	} else {
 		err = nil
 	}
 	err = json.Unmarshal([]byte(jsonData), body)
 	if err != nil {
-		log.Fatal("Convert json token is fail.")
+		log.Fatal(err.Error())
 	} else {
 		err = nil
 	}
 	result, err := service.JWTAuthService().ValidateToken(body.Token)
 	if err != nil {
-		log.Fatal("Function validate JWT token is error.")
+		log.Fatal(err.Error())
 	} else {
 		err = nil
 	}
