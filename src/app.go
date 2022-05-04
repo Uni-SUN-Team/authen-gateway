@@ -1,6 +1,7 @@
 package src
 
 import (
+	"os"
 	"unisun/api/authen-listening/src/route"
 
 	"github.com/gin-gonic/gin"
@@ -8,7 +9,7 @@ import (
 
 func App() *gin.Engine {
 	r := gin.Default()
-	api := r.Group("/api")
+	api := r.Group(os.Getenv("CONTEXT_PATH") + "/api")
 	validate := api.Group("/validate")
 	{
 		route.ValidateJWT(validate)

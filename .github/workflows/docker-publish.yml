@@ -94,8 +94,8 @@ jobs:
           script: |
             cd ${{ secrets.PATH }}
             # Stop running container
-            docker-compose down -v
+            docker compose down -v
             # Pull update new image
             docker image rm -f ${{ env.IMAGE_NAME }}
             # Run a new container from a new image
-            docker-compose up -d
+            docker compose up -d

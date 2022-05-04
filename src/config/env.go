@@ -3,5 +3,6 @@ package config
 import "os"
 
 func SetENV() {
-	os.Setenv("SECRET", "600cb65c-8acf-4871-ba80-222813d41c30")
+	os.Setenv("SECRET", "aSiAZgPRmmw7gN7p9WeQxQ")
+	os.Setenv("CONTEXT_PATH", "/authen-listening")
 }
