@@ -5,8 +5,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strconv"
+	"reflect"
 	"unisun/api/authen-listening/src/entitys"
+	"unisun/api/authen-listening/src/gorms"
 	"unisun/api/authen-listening/src/models"
 	"unisun/api/authen-listening/src/services"
 
@@ -52,38 +53,74 @@ func CallSignin(c *gin.Context) {
 	jsonData, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		log.Panic(err.Error())
+		c.JSON(http.StatusFound, &models.Response{Error: err.Error(), Result: map[string]string{"confirm": "false"}})
+		return
 	} else {
 		err = nil
 	}
 	err = json.Unmarshal([]byte(jsonData), body)
 	if err != nil {
 		log.Panic(err.Error())
+		c.JSON(http.StatusFound, &models.Response{Error: err.Error(), Result: map[string]string{"confirm": "false"}})
+		return
 	} else {
 		err = nil
 	}
 	result, err := services.JWTAuthService().ValidateToken(body.Token)
 	if err != nil {
 		log.Panic(err.Error())
+		c.JSON(http.StatusFound, &models.Response{Error: err.Error(), Result: map[string]string{"confirm": "false"}})
+		return
 	} else {
 		err = nil
 	}
 	user_auth_permission := entitys.UserAuthPermission{}
 	if claims, ok := result.Claims.(jwt.MapClaims); ok && result.Valid {
-		if id, err := strconv.Atoi(claims["id"].(string)); err == nil {
-			user_auth_permission.UserId = id
-			user_auth_permission.Token = body.Token
-			if iat, err := strconv.Atoi(claims["iat"].(string)); err == nil {
-				user_auth_permission.Iat = iat
-			} else {
-				log.Panic(err)
+		for key, val := range claims {
+			log.Println("val ==> ", val, "   key ==> ", key, "   ", reflect.TypeOf(val))
+			switch key {
+			case "id":
+				if val != 0 {
+					user_auth_permission.UserId = int(val.(float64))
+				} else {
+					c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Value is undefinde.", Result: map[string]string{"type": key, "confirm": "false"}})
+					return
+				}
+			case "token_version":
+				if val.(string) != "" {
+					user_auth_permission.TokenVersion = val.(string)
+				} else {
+					c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Value is undefinde.", Result: map[string]string{"type": key, "confirm": "false"}})
+					return
+				}
+			case "iat":
+				if val != 0 {
+					user_auth_permission.Iat = val.(float64)
+				} else {
+					c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Value is undefinde.", Result: map[string]string{"type": key, "confirm": "false"}})
+					return
+				}
+			case "exp":
+				if val != 0 {
+					user_auth_permission.Ext = val.(float64)
+				} else {
+					c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Value is undefinde.", Result: map[string]string{"type": key, "confirm": "false"}})
+					return
+				}
+			default:
+				c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Not found value.", Result: map[string]string{"type": key, "confirm": "false"}})
+				return
 			}
-		} else {
-			log.Panic(err)
 		}
 	}
-
+	if !CheckUserTokenIsNull(user_auth_permission) {
+		c.JSON(http.StatusUnprocessableEntity, &models.Response{Error: "Not found all value.", Result: map[string]string{"confirm": "false"}})
+		return
+	}
+	gorms.JWTAuthService().FindAndCreate(user_auth_permission)
+	c.JSON(http.StatusOK, &models.Response{Result: map[string]string{"confirm": "true"}})
 }
 
-// func TestRedirect(c *gin.Context) {
-// 	http.Redirect(c.Writer, c.Request, "http://www.google.com", 301)
-// }
+func CheckUserTokenIsNull(user_auth_permission entitys.UserAuthPermission) bool {
+	return user_auth_permission.UserId != 0 && user_auth_permission.TokenVersion != "" && user_auth_permission.Ext != 0 && user_auth_permission.Iat != 0
+}
