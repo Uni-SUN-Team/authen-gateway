@@ -1,10 +1,11 @@
-package service
+package services
 
 import (
 	"fmt"
 	"os"
+	"unisun/api/authen-listening/src/constants"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v4"
 )
 
 type JWTService interface {
@@ -24,7 +25,7 @@ func JWTAuthService() JWTService {
 }
 
 func getSecretKey() string {
-	secret := os.Getenv("SECRET")
+	secret := os.Getenv(constants.JWT_SECRET)
 	if secret == "" {
 		secret = "secret"
 	}
