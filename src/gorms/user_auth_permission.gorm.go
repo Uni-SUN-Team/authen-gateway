@@ -5,11 +5,12 @@ import (
 	"unisun/api/authen-listening/src/entitys"
 
 	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 )
 
 type UserAuthPermission interface {
-	FindAndCreate(Data entitys.UserAuthPermission) *gorm.DB
+	FindbyUserid(userId int) entitys.UserAuthPermission
+	Create(Data entitys.UserAuthPermission)
+	UpdateVersionToken(versionToken int, Data entitys.UserAuthPermission)
 }
 
 type dbServices struct {
@@ -22,6 +23,16 @@ func JWTAuthService() UserAuthPermission {
 	}
 }
 
-func (db *dbServices) FindAndCreate(Data entitys.UserAuthPermission) *gorm.DB {
-	return db.Context.Clauses(clause.OnConflict{UpdateAll: true}).Create(&Data)
+func (db *dbServices) FindbyUserid(userId int) entitys.UserAuthPermission {
+	user_permission := entitys.UserAuthPermission{}
+	db.Context.First(&user_permission, userId)
+	return user_permission
+}
+
+func (db *dbServices) Create(Data entitys.UserAuthPermission) {
+	db.Context.Create(&Data)
+}
+
+func (db *dbServices) UpdateVersionToken(versionToken int, Data entitys.UserAuthPermission) {
+	db.Context.Model(&Data).Where("user_id", Data.UserId).Update("token_version", versionToken).Update("iat", Data.Iat).Update("ext", Data.Ext)
 }

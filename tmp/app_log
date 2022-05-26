@@ -1,0 +1,54 @@
+2022/05/23 22:02:12 log.go:17: Logging to custom file
+2022/05/23 22:03:05 log.go:17: Logging to custom file
+2022/05/23 22:18:37 log.go:17: Client is error. Post "http://localhost:8081/authen-listening/api/validate/call-signin": 302 response missing Location header
+2022/05/23 22:27:45 log.go:17:  Token is expired
+2022/05/23 22:51:14 log.go:17:  Token used before issued
+2022/05/23 22:56:24 log.go:17:  Token used before issued
+2022/05/24 23:39:15 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:39:15 log.go:17: Refresh token is invalid 
+2022/05/24 23:44:49 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:44:49 log.go:17: Refresh token is invalid 
+2022/05/24 23:45:35 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:45:35 log.go:17: Refresh token is invalid 
+2022/05/24 23:45:59 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:45:59 log.go:17: Refresh token is invalid 
+2022/05/24 23:46:59 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:46:59 log.go:17: Refresh token is invalid 
+2022/05/24 23:48:25 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:48:25 log.go:17: Refresh token is invalid 
+2022/05/24 23:49:18 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:49:18 log.go:17: Refresh token is invalid 
+2022/05/24 23:51:40 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:51:40 log.go:17: Refresh token is invalid 
+2022/05/24 23:53:55 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:53:55 log.go:17: Refresh token is invalid 
+2022/05/24 23:55:12 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:55:12 log.go:17: Refresh token is invalid 
+2022/05/24 23:57:10 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:57:10 log.go:17: Refresh token is invalid 
+2022/05/24 23:57:23 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:57:23 log.go:17: End CallCheckRefreshToken 
+2022/05/24 23:58:57 log.go:17: Start CallCheckRefreshToken 
+2022/05/24 23:58:57 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:00:55 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:00:55 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:01:57 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:01:57 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:03:15 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:03:15 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:23:01 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:23:01 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:26:34 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:26:34 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:27:19 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:27:19 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:32:07 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:32:07 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:32:12 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:32:12 log.go:17: End CallCheckRefreshToken 
+2022/05/25 00:32:22 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:32:22 log.go:17: Refresh token is invalid 
+2022/05/25 00:32:52 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:32:52 log.go:17: Refresh token is invalid 
+2022/05/25 00:33:08 log.go:17: Start CallCheckRefreshToken 
+2022/05/25 00:33:08 log.go:17: End CallCheckRefreshToken 

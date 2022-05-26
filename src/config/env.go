@@ -8,6 +8,7 @@ import (
 func SetENV() {
 	os.Setenv(constants.JWT_SECRET, "aSiAZgPRmmw7gN7p9WeQxQ==")
 	os.Setenv(constants.CONTEXT_PATH, "/authen-listening")
+	os.Setenv(constants.PORT, "8081")
 	/**
 	* DB
 	 */

@@ -9,6 +9,7 @@ import (
 func ValidateJWT(g *gin.RouterGroup) {
 	g.POST("/token", controllers.Validate)
 	g.POST("/call-signin", controllers.CallSignin)
-	g.POST("/call-revoke")
-	g.GET("/token-version/:id")
+	g.POST("/call-revoke", controllers.CallRevoke)
+	g.POST("/call-check-refreshtoken", controllers.CallCheckRefreshToken)
+	g.GET("/token-version/:id", controllers.GetTokenVersionById)
 }
