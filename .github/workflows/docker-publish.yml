@@ -13,7 +13,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: registry.hub.docker.com
   # github.repository as <account>/<repo>
-  IMAGE_NAME: narawich/unisun.authen_listening
+  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
 
 jobs:
   build:
