@@ -1,0 +1,18 @@
+app:
+  env: "development"
+  context_path: "/authen-listening"
+  port: 8084
+database:
+  host: "ec2-34-199-68-114.compute-1.amazonaws.com"
+  name: "d833p6a5jerefa"
+  user: "ldpjsnnuzgquvw"
+  pass: "de486f13dcf0d3f26b3809dd5ae2699a1c0c09037fbd2797c2795af484068284"
+  port: 5432
+  ssl: "disable"
+  timezone: "Asia/Bangkok"
+gin:
+  mode: "debug"
+  version: "v1"
+  root_path: "api"
+  configs:
+    trusted_proxies: "127.0.0.1"

@@ -20,7 +20,6 @@ func ConnectDatabase() {
 		"password=" + os.Getenv(constants.DB_PASS),
 		"dbname=" + os.Getenv(constants.DB_NAME),
 		"port=" + os.Getenv(constants.DB_PORT),
-		"sslmode=" + os.Getenv(constants.DB_SSL),
 		"TimeZone=" + os.Getenv(constants.DB_TIMEZONE),
 	}
 	dsn := strings.Join(str, " ")
